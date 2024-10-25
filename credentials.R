@@ -4,7 +4,7 @@ cred_psql_docker <- list(dbname = "postgres",
                          pass      = 'you-own-password-for-postgres',
                          port = 5432)
 
-cred_psql_150 <- list(dbname = "databasename-from-brightspace",
+cred_psql_150 <- list(dbname = "user41db",
                          host   = "159.223.30.236",
                          user      = 'username-from-brightspace',
                          pass      = 'password-from-brightspace',
