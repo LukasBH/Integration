@@ -2,7 +2,7 @@ library(RPostgres)
 library(DBI)
 # Put the credentials in this script
 # Never push credentials to git!! --> use .gitignore on .credentials.R
-source(".credentials.R")
+source("credentials.R")
 # Function to send queries to Postgres
 source("psql_queries.R")
 # Create a new schema in Postgres on docker
