@@ -41,10 +41,43 @@ psql_select(cred = cred_psql_docker,
 psql_manipulate(cred = cred_psql_docker, 
                 query_string = "drop SCHEMA intg1 cascade;")
 
+#### Exercises ####
+#Exercise 3
+  #From R, do the following in your Postgres server (i.e. the Postgres server running in your postgres container)
+    #In the ”intg1” schema, create a table called ”students” with the following columns:
+      #Student_id: an autoincrementing integer column holding the primary key
+      #Student_name: A varchar column where each entry can hold a maximum of 255 characters
+      #department_code: An integer column
+    #Insert two students into the ”students” table using the ” psql_manipulate()” function.
+    #Insert two students into the ”students” table using the ”psql_append_df()” function
+    #Use the ”psql_select()” function to fetch the ”students” data from Postgres and confirm that your inserts were successful
 
+psql_manipulate(cred = cred_psql_docker,
+                query_string = 
+  "create table intg1.students (
+    student_id serial primary key,
+    student_name varchar(255),
+    department_code int
+  );")
+#dropped table since department code was written wrong
+psql_manipulate(cred = cred_psql_docker, 
+                 query_string = 
+                   "drop table intg1.students;")
 
-
-
+psql_manipulate(cred = cred_psql_docker,
+                query_string = 
+                  "insert into intg1.students
+                    values (default, 'Lukas', 1),
+                            (default, 'Hans', 2);")
+df2 <- data.frame(student_name = c("Jon", "Kasper"),
+                  department_code = c(3, 4))
+students <- psql_append_df(cred = cred_psql_docker,
+                           schema_name = "intg1",
+                           tab_name = "students",
+                           df = df2) 
+psql_select(cred = cred_psql_docker,
+            query_string = 
+              "select * from intg1.students;")
 
 
 
