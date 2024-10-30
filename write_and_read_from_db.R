@@ -41,7 +41,8 @@ psql_select(cred = cred_psql_docker,
 psql_manipulate(cred = cred_psql_docker, 
                 query_string = "drop SCHEMA intg1 cascade;")
 
-#### Exercises --------
+
+# Exercises ---------------------------------------------------------------
 #####Exercise 3 ####
   #From R, do the following in your Postgres server (i.e. the Postgres server running in your postgres container)
     #In the ”intg1” schema, create a table called ”students” with the following columns:
@@ -78,6 +79,9 @@ students <- psql_append_df(cred = cred_psql_docker,
 psql_select(cred = cred_psql_docker,
             query_string = 
               "select * from intg1.students;")
+
+
+
 
 
 

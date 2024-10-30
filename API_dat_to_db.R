@@ -3,7 +3,7 @@ library(DBI)
 library(tidyverse)
 library(httr2)
 library(lubridate)
-# Investigate which symbols we can search for ---------------
+# Investigate which symbols we can search for -----------------------------
 req <- request("https://alpha-vantage.p.rapidapi.com") %>%
   req_url_path("query") %>%
   req_url_query("keywords" = "Microsoft",
@@ -18,7 +18,7 @@ symbols <- resp %>%
 symbols$bestMatches[[1]]
 symbols$bestMatches[[2]]
 
-# Extract and Transform  ------------------------------------------
+# Extract and Transform  ----------------------------------------------------
 # Extract data from Alpha Vantage
 req <- request("https://alpha-vantage.p.rapidapi.com") %>%
   req_url_path("query") %>%
@@ -45,7 +45,7 @@ for (i in 1:nrow(df)) {
   df[i,-1] <- as.data.frame(dat$`Time Series (1min)`[[i]])
 }
 
-# Create table in Postgres ------------------------------------------------
+# Create table in Postgres -------------------------------------------------
 # Put the credentials in this script
 # Never push credentials to git!! --> use .gitignore on .credentials.R
 source("credentials.R")
@@ -66,13 +66,13 @@ psql_manipulate(cred = cred_psql_docker,
 	close numeric(30,4),
 	volume numeric(30,4));")
 
-# LOAD price data -------------------------------
+# LOAD price data ---------------------------------------------------------------
 psql_append_df(cred = cred_psql_docker,
                schema_name = "intg2",
                tab_name = "prices",
                df = df)
 
-# Check results -----------------------------------------------------------
+# Check results ---------------------------------------------------------------
 # Check that we can fetch the data again
 psql_select(cred = cred_psql_docker, 
             query_string = 
@@ -81,7 +81,8 @@ psql_select(cred = cred_psql_docker,
 psql_manipulate(cred = cred_psql_docker, 
                 query_string = "drop SCHEMA intg2 cascade;")
 
-# Exercises ----------
+
+# Exercises ---------------------------------------------------------------
 ####Exercise 4 Go to rapidapi.com and subscribe to the ”Alpha Vantage” API and get your unique API key####
     #0f09d584fcmsh894b66cebeba7ebp18e400jsn75b6f7252297
 
