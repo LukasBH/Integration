@@ -82,10 +82,10 @@ psql_manipulate(cred = cred_psql_docker,
                 query_string = "drop SCHEMA intg2 cascade;")
 
 # Exercises ----------
-#Exercise 4 Go to rapidapi.com and subscribe to the ”Alpha Vantage” API and get your unique API key 
+####Exercise 4 Go to rapidapi.com and subscribe to the ”Alpha Vantage” API and get your unique API key####
     #0f09d584fcmsh894b66cebeba7ebp18e400jsn75b6f7252297
 
-#Exercise 5 Using the ”Alpha Vantage” API: 
+####Exercise 5 Using the ”Alpha Vantage” API:####
   #Search for another stock (preferably given in "UTC-04” timezone – which corresponds to the"US/Eastern” timezone), 
   #find its symbol, and fetch its intraday price data with an interval of 60 minutes. 
 req2 <- request("https://alpha-vantage.p.rapidapi.com") %>%
@@ -118,7 +118,7 @@ resp2 <- req2 %>%
 dat2 <- resp2 %>%
   resp_body_json()
 
-#Exercise 6. Transform the fetched data into an R data.frame where time is given in UTC. 
+####Exercise 6. Transform the fetched data into an R data.frame where time is given in UTC.####
   #Create a PostgreSQL table with the columns: ”id”, ”timestamp”, ”close”, and ”volume”, and load the corresponding price data into this table.
 
 # TRANSFORM timestamp to UTC time
