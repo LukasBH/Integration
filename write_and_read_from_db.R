@@ -41,8 +41,8 @@ psql_select(cred = cred_psql_docker,
 psql_manipulate(cred = cred_psql_docker, 
                 query_string = "drop SCHEMA intg1 cascade;")
 
-#### Exercises ####
-#Exercise 3
+#### Exercises --------
+#####Exercise 3 ####
   #From R, do the following in your Postgres server (i.e. the Postgres server running in your postgres container)
     #In the ”intg1” schema, create a table called ”students” with the following columns:
       #Student_id: an autoincrementing integer column holding the primary key
