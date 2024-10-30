@@ -33,6 +33,7 @@ resp <- req %>%
   req_perform() 
 dat <- resp %>%
   resp_body_json()
+#We have to transfrom this data since it is in json format whihc in R results in it being a list which is not beneficial:
 
 # TRANSFORM timestamp to UTC time
 timestamp <- lubridate::ymd_hms(names(dat$`Time Series (1min)`), tz = "US/Eastern")
