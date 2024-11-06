@@ -2,7 +2,7 @@ library(shiny)
 library(ggplot2)
 library(DBI)
 library(RPostgres)
-source(".credentials.R")
+source("credentials.R")
 source("psql_queries.R")
 
 # Define UI
@@ -25,8 +25,8 @@ server <- function(input, output) {
   
   # Function to fetch data
   fetchData <- function() {
-
-    psql_select(cred = cred_psql_docker, 
+    
+    psql_select(cred = cred_psql_docker,
                 query_string = 
                   "SELECT s.name, p.timestamp_utc, p.close
                         FROM (SELECT symbol_fk, timestamp_utc, close 
